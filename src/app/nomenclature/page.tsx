@@ -210,6 +210,7 @@ export default function Nomenclature() {
 
   return (
     <div className="relative gap-7 flex-col p-5">
+      <h1>HELLO</h1>
       <Dialog>
         <DialogTrigger asChild>
           <Button
