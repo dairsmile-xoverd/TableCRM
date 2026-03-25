@@ -54,18 +54,16 @@ import { Input } from '@/components/ui/input'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN
-
+console.log(API_TOKEN)
 const ITEMS_PER_PAGE = 10
 
 export default function Nomenclature() {
   const [products, setProducts] = useState<Product[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [totalPage, setTotalPage] = useState(0)
-  const [openPopoverId, setOpenPopoverId] = useState<number>(0)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const [pictures, setPictures] = useState<{ [key: number]: Picture[] }>({})
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
   const totalPages = Math.ceil(totalPage / ITEMS_PER_PAGE)
 
@@ -151,7 +149,6 @@ export default function Nomenclature() {
         icon: <CircleCheck size={20} color="white" fill="#52c41a" />,
       })
 
-      setOpenPopoverId(0)
       handleProductEdit()
     } catch (error) {
       toast.error('Ошибка удаления номенклатуры', {
@@ -349,17 +346,9 @@ export default function Nomenclature() {
                                   h-full"
                                 />
 
-                                <Popover
-                                  open={openPopoverId === picture.id}
-                                  onOpenChange={(open) => {
-                                    if (!open) setOpenPopoverId(0)
-                                  }}
-                                >
+                                <Popover>
                                   <PopoverTrigger asChild>
                                     <Trash
-                                      onClick={() =>
-                                        setOpenPopoverId(picture.id)
-                                      }
                                       className="
                                         cursor-pointer
                                         absolute 
@@ -408,11 +397,12 @@ export default function Nomenclature() {
                                     </PopoverHeader>
 
                                     <div className="flex flex-row justify-end gap-2">
-                                      <Button
-                                        variant="outline"
-                                        size={'xs'}
-                                        type="button"
-                                        className="
+                                      <PopoverPrimitive.Close asChild>
+                                        <Button
+                                          variant="outline"
+                                          size={'xs'}
+                                          type="button"
+                                          className="
                                         text-[12px]
                                         mt-2 
                                         text-black 
@@ -421,15 +411,16 @@ export default function Nomenclature() {
                                         hover:bg-amber-50/0 
                                         hover:border-blue-400
                                         active:hover:text-blue-500"
-                                        onClick={() => setOpenPopoverId(0)}
-                                      >
-                                        <span>Нет</span>
-                                      </Button>
+                                        >
+                                          <span>Нет</span>
+                                        </Button>
+                                      </PopoverPrimitive.Close>
 
-                                      <Button
-                                        size={'xs'}
-                                        type="button"
-                                        className="
+                                      <PopoverPrimitive.Close asChild>
+                                        <Button
+                                          size={'xs'}
+                                          type="button"
+                                          className="
                                         text-[12px]
                                         mt-2 
                                         bg-red-500 
@@ -437,13 +428,16 @@ export default function Nomenclature() {
                                         rounded 
                                         hover:bg-red-400
                                         active:hover:bg-blue-600"
-                                        onClick={() => {
-                                          handlePictureDelete(picture, product)
-                                          setIsPopoverOpen(false)
-                                        }}
-                                      >
-                                        <span>Да</span>
-                                      </Button>
+                                          onClick={() => {
+                                            handlePictureDelete(
+                                              picture,
+                                              product,
+                                            )
+                                          }}
+                                        >
+                                          <span>Да</span>
+                                        </Button>
+                                      </PopoverPrimitive.Close>
                                     </div>
                                   </PopoverContent>
                                 </Popover>
@@ -551,12 +545,7 @@ export default function Nomenclature() {
                         </DialogContent>
                       </Dialog>
 
-                      <Popover
-                        open={openPopoverId == product.id}
-                        onOpenChange={(open) => {
-                          if (!open) setOpenPopoverId(0)
-                        }}
-                      >
+                      <Popover>
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <PopoverTrigger asChild>
@@ -564,9 +553,6 @@ export default function Nomenclature() {
                                 variant="outline"
                                 size="icon"
                                 className="cursor-pointer hover:border-blue-400 hover:text-blue-400"
-                                onClick={() =>
-                                  setOpenPopoverId(product.id ?? 0)
-                                }
                               >
                                 <Trash />
                               </Button>
@@ -610,11 +596,12 @@ export default function Nomenclature() {
                             </span>
                           </div>
                           <div className="flex flex-row justify-end gap-2">
-                            <Button
-                              variant="outline"
-                              size={'xs'}
-                              type="button"
-                              className="
+                            <PopoverPrimitive.Close asChild>
+                              <Button
+                                variant="outline"
+                                size={'xs'}
+                                type="button"
+                                className="
                                  text-[12px]
                                 mt-2 
                                 text-black 
@@ -623,15 +610,16 @@ export default function Nomenclature() {
                                 hover:bg-amber-50/0 
                                 hover:border-blue-400
                                 active:hover:text-blue-500"
-                              onClick={() => setOpenPopoverId(0)}
-                            >
-                              <span>Отмена</span>
-                            </Button>
+                              >
+                                <span>Отмена</span>
+                              </Button>
+                            </PopoverPrimitive.Close>
 
-                            <Button
-                              size={'xs'}
-                              type="button"
-                              className="
+                            <PopoverPrimitive.Close asChild>
+                              <Button
+                                size={'xs'}
+                                type="button"
+                                className="
                                 text-[12px]
                                 mt-2 
                                 bg-blue-500 
@@ -639,10 +627,11 @@ export default function Nomenclature() {
                                 rounded 
                                 hover:bg-blue-400
                                 active:hover:bg-blue-600"
-                              onClick={() => handleProductDelete(product)}
-                            >
-                              <span>ОК</span>
-                            </Button>
+                                onClick={() => handleProductDelete(product)}
+                              >
+                                <span>ОК</span>
+                              </Button>
+                            </PopoverPrimitive.Close>
                           </div>
                         </PopoverContent>
                       </Popover>
