@@ -154,14 +154,7 @@ function AppSidebar() {
             item.group ? (
               <SidebarMenuItem key={item.id}>
                 <Collapsible defaultOpen className="group/collapsible">
-                  <HoverCard
-                    open={openHoverId === item.id && !open}
-                    onOpenChange={(hoverOpen) => {
-                      if (!open) setOpenHoverId(hoverOpen ? item.id : 0)
-                    }}
-                    openDelay={100}
-                    closeDelay={100}
-                  >
+                  <HoverCard>
                     <HoverCardTrigger asChild>
                       <CollapsibleTrigger asChild>
                         <SidebarMenuButton
@@ -190,7 +183,7 @@ function AppSidebar() {
                     <HoverCardContent
                       side="right"
                       align="start"
-                      className="ml-1.5 w-auto"
+                      className="ml-4 w-auto"
                     >
                       <SidebarMenu>
                         {item.subItems?.map((subItem) => subMenu(subItem))}
