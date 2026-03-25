@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
+    "@radix-ui/react-popover": "^1.1.15",
     "@types/react": "^19.2.14",
     "axios": "^1.13.6",
     "class-variance-authority": "^0.7.1",
