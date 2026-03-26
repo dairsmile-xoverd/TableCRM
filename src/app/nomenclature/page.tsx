@@ -223,7 +223,7 @@ export default function Nomenclature() {
             <Plus /> <span>Добавить номенклатуру</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-1xl md:max-w-3xl lg:max-w-5xl">
+        <DialogContent className="sm:max-w-1xl md:max-w-2xl lg:max-w-5xl">
           <AddProductModal handleProductAdded={handleProductAdded} />
         </DialogContent>
       </Dialog>

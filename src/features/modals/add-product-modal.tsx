@@ -358,6 +358,14 @@ export default function AddProductModal({
               </FieldLabel>
               <Input id="code"></Input>
             </Field>
+
+
+
+
+
+
+
+            
           </FieldGroup>
         </TabsContent>
       </Tabs>

@@ -14,8 +14,12 @@ export type Product = {
   id?: number
   type: string | null
   name: string
-  action?: () => void
+  code: string
   tags: string[]
+  unit: number
+  unit_name: string
+  category: number
   description_short: string | null
   description_long: string | null
+  manufacturer: string
 }
