@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import AddProductModal from '@/features/modals/add-product-modal'
+import AddNomenclature from '@/features/Modal/ui/AddNomenclature'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import {
@@ -30,14 +30,14 @@ import {
   Trash,
 } from 'lucide-react'
 import axios from 'axios'
-import types from '@/products'
+import { types } from '@/products'
 import { toast } from 'sonner'
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Picture, Product } from '@/types'
+import { Picture, Product } from '@/products'
 import { ButtonGroup } from '@/components/ui/button-group'
 import {
   Popover,
@@ -54,7 +54,7 @@ import { Input } from '@/components/ui/input'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN
-console.log(API_TOKEN)
+
 const ITEMS_PER_PAGE = 10
 
 export default function Nomenclature() {
@@ -135,10 +135,6 @@ export default function Nomenclature() {
       const response = await axios.delete(
         `${API_URL}/nomenclature/${product.id}/`,
         {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: false,
           params: {
             token: API_TOKEN,
           },
@@ -204,10 +200,9 @@ export default function Nomenclature() {
       })
       .then(() => fetchPicture(product))
   }
-
   return (
-    <div className="relative gap-7 flex-col p-5">
-      <Dialog>
+    <div className="relative gap-7 flex-col p-5" >
+      <Dialog >
         <DialogTrigger asChild>
           <Button
             variant="outline"
@@ -223,8 +218,8 @@ export default function Nomenclature() {
             <Plus /> <span>Добавить номенклатуру</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-1xl md:max-w-2xl lg:max-w-5xl">
-          <AddProductModal handleProductAdded={handleProductAdded} />
+        <DialogContent className="sm:max-w-1xl md:max-w-2xl lg:max-w-7xl">
+          <AddNomenclature handleProductAdded={handleProductAdded} />
         </DialogContent>
       </Dialog>
 
@@ -538,7 +533,7 @@ export default function Nomenclature() {
                         </Tooltip>
 
                         <DialogContent className="min-w-3xl">
-                          <AddProductModal
+                          <AddNomenclature
                             product={product}
                             handleProductEdit={handleProductEdit}
                           />
@@ -647,11 +642,11 @@ export default function Nomenclature() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem>Edit</DropdownMenuItem>
-                          <DropdownMenuItem>Duplicate</DropdownMenuItem>
+                          <DropdownMenuItem>.</DropdownMenuItem>
+                          <DropdownMenuItem>.</DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem variant="destructive">
-                            Delete
+                            .
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>

@@ -172,8 +172,7 @@ function AppSidebar() {
                           <span className="text-[17px]">{item.label}</span>
                           {item.chevron && (
                             <item.chevron
-                              className="ml-auto 
-                      transition-transform group-data-[state=open]/collapsible:rotate-180"
+                              className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
                             />
                           )}
                         </SidebarMenuButton>
