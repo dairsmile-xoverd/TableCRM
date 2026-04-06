@@ -200,16 +200,16 @@ export default function Nomenclature() {
       })
       .then(() => fetchPicture(product))
   }
-  
+
   return (
-    <div className="relative gap-7 flex-col p-5" >
-      <Dialog >
+    <div className="relative gap-7 flex-col p-5  " >
+      <Dialog>
         <DialogTrigger asChild>
           <Button
             variant="outline"
             className="
             cursor-pointer  
-            w-51 
+            w-54 
           bg-blue-500
           text-white rounded-1 
           hover:bg-blue-400 
@@ -219,7 +219,7 @@ export default function Nomenclature() {
             <Plus /> <span>Добавить номенклатуру</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-1xl md:max-w-2xl lg:max-w-7xl">
+        <DialogContent className="sm:max-w-1xl md:max-w-2xl lg:max-w-5xl ">
           <AddNomenclature handleProductAdded={handleProductAdded} />
         </DialogContent>
       </Dialog>

@@ -6,13 +6,13 @@
 
 [data-after]::after {
   content: attr(data-after);
-  margin-left: -7px;
   font: normal;
 }
 
 [data-before]::before {
   content: attr(data-before);
   color: red;
+  padding-right: 4px;
   font-size: larger;
 }
 
@@ -133,7 +133,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/20 font-normal;
+    @apply border-border outline-ring/20;
     --sidebar-width: 15rem;
     --sidebar-width-icon: 4rem;
   }

@@ -229,7 +229,7 @@ export default function AddNomenclature({
   }
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-2 ">
       <DialogHeader>
         <DialogTitle>Добавить номенклатуру</DialogTitle>
       </DialogHeader>
@@ -241,7 +241,6 @@ export default function AddNomenclature({
               key={tab.value}
               value={tab.value}
               className="
-              font-normal
               text-[15px]
               data-[state=active]:text-[17px]
             hover:text-blue-500 
@@ -256,13 +255,13 @@ export default function AddNomenclature({
         </TabsList>
 
         <TabsContent value="basic">
-          <div className="grid grid-cols-[180px_1fr] items-start gap-x-4 gap-y-8 px-4">
-            <FieldLabel htmlFor="name"
+          <div className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20 pt-2">
+            <label htmlFor="name"
               data-after=":"
               data-before="*"
-              className="font-normal text-right pt-2">
+              className="text-right">
               Имя
-            </FieldLabel>
+            </label>
             <div className='relative'>
               <Input
                 required
@@ -282,9 +281,9 @@ export default function AddNomenclature({
             </div>
 
 
-            <FieldLabel htmlFor="type" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="type" data-after=":" className="text-right pt-1">
               Тип
-            </FieldLabel>
+            </label>
             <Combobox
               id="type"
               name="type"
@@ -323,9 +322,9 @@ export default function AddNomenclature({
               </ComboboxContent>
             </Combobox>
 
-            <FieldLabel htmlFor="tags" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="tags" data-after=":" className="font-normal text-right pt-1">
               Тэги
-            </FieldLabel>
+            </label>
             <Combobox
               id="tags"
               name="tags"
@@ -389,9 +388,9 @@ export default function AddNomenclature({
               )}
             </Combobox>
 
-            <FieldLabel htmlFor="description_short" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="description_short" data-after=":" className="font-normal text-right pt-1">
               Краткое описание
-            </FieldLabel>
+            </label>
             <Textarea
               id="description_short"
               name="description_short"
@@ -404,9 +403,9 @@ export default function AddNomenclature({
               }}
             />
 
-            <FieldLabel htmlFor="description_long" data-after=":" className="font-normal w-38">
+            <label htmlFor="description_long" data-after=":" className="font-normal text-right pt-1">
               Длинное описание
-            </FieldLabel>
+            </label>
             <Textarea
               id="description_long"
               name="description_long"
@@ -419,9 +418,9 @@ export default function AddNomenclature({
               }}
             />
 
-            <FieldLabel htmlFor="code" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="code" data-after=":" className="font-normal text-right pt-1">
               Код
-            </FieldLabel>
+            </label>
             <Input
               type='text'
               id="code"
@@ -432,77 +431,77 @@ export default function AddNomenclature({
               }}
             ></Input>
 
-            <FieldLabel htmlFor="unit_name" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="unit_name" data-after=":" className="font-normal text-right pt-1">
               Единица измерения
-            </FieldLabel>
-              <Combobox
-                id="unit_name"
-                name="unit_name"
-                items={fillingData.measurementUnits}
-                value={
-                  fillingData.measurementUnits.find(
-                    (item) => item.id === formData.unit,
-                  )?.name ?? ''
-                }
-                onValueChange={(selectedValue) => {
-                  setFormData({ ...formData, unit: selectedValue, })
-                }}
-              >
-                <ComboboxInput />
-                <ComboboxContent className="pointer-events-auto transition-all duration-300">
-                  <ComboboxEmpty>Нет данных</ComboboxEmpty>
-                  <ComboboxList className="max-h-60" onWheel={(e) => e.stopPropagation()}>
-                    {(item) => (
-                      <ComboboxItem
-                        key={item.id}
-                        value={item.id}
-                        className="cursor-pointer"
-                      >
-                        {item.name}
-                      </ComboboxItem>
-                    )}
-                  </ComboboxList>
-                </ComboboxContent>
-              </Combobox>
+            </label>
+            <Combobox
+              id="unit_name"
+              name="unit_name"
+              items={fillingData.measurementUnits}
+              value={
+                fillingData.measurementUnits.find(
+                  (item) => item.id === formData.unit,
+                )?.name ?? ''
+              }
+              onValueChange={(selectedValue) => {
+                setFormData({ ...formData, unit: selectedValue, })
+              }}
+            >
+              <ComboboxInput />
+              <ComboboxContent className="pointer-events-auto transition-all duration-300">
+                <ComboboxEmpty>Нет данных</ComboboxEmpty>
+                <ComboboxList className="max-h-60" onWheel={(e) => e.stopPropagation()}>
+                  {(item) => (
+                    <ComboboxItem
+                      key={item.id}
+                      value={item.id}
+                      className="cursor-pointer"
+                    >
+                      {item.name}
+                    </ComboboxItem>
+                  )}
+                </ComboboxList>
+              </ComboboxContent>
+            </Combobox>
 
-            <FieldLabel htmlFor="category" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="category" data-after=":" className="font-normal text-right pt-1">
               Категория
-            </FieldLabel>
-              <Combobox
-                id="category"
-                name="category"
-                items={fillingData.categories}
-                value={
-                  fillingData.categories.find(
-                    (item) => item.id === formData.category,
-                  )?.name ?? ''
-                }
-                onValueChange={(selectedValue) => {
-                  setFormData({ ...formData, category: selectedValue })
-                }}
-              >
-                <ComboboxInput />
+            </label>
+            <Combobox
+              id="category"
+              name="category"
+              items={fillingData.categories}
+              value={
+                fillingData.categories.find(
+                  (item) => item.id === formData.category,
+                )?.name ?? ''
+              }
+              onValueChange={(selectedValue) => {
+                setFormData({ ...formData, category: selectedValue })
+              }}
+            >
+              <ComboboxInput />
 
-                <ComboboxContent className="pointer-events-auto transition-all duration-300">
-                  <ComboboxEmpty>Нет данных</ComboboxEmpty>
-                  <ComboboxList className="max-h-60" onWheel={(e) => e.stopPropagation()}>
-                    {(item) => (
-                      <ComboboxItem
-                        key={item.id}
-                        value={item.id}
-                        className="cursor-pointer"
-                      >
-                        {item.name}
-                      </ComboboxItem>
-                    )}
-                  </ComboboxList>
-                </ComboboxContent>
-              </Combobox>
+              <ComboboxContent className="pointer-events-auto transition-all duration-300">
+                <ComboboxEmpty>Нет данных</ComboboxEmpty>
+                <ComboboxList className="max-h-60" onWheel={(e) => e.stopPropagation()}>
+                  {(item) => (
+                    <ComboboxItem
+                      key={item.id}
+                      value={item.id}
+                      className="cursor-pointer"
+                    >
+                      {item.name}
+                    </ComboboxItem>
+                  )}
+                </ComboboxList>
+              </ComboboxContent>
+            </Combobox>
 
 
-            <FieldLabel htmlFor="manufacturer" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="manufacturer" data-after=":" className="font-normal text-right pt-1">
               Производитель
-            </FieldLabel>
+            </label>
             <Combobox
               id="manufacturer"
               name="manufacturer"
@@ -534,9 +533,9 @@ export default function AddNomenclature({
               </ComboboxContent>
             </Combobox>
 
-            <FieldLabel htmlFor="cashback_type" data-after=":" className="font-normal text-right pt-2">
+            <label htmlFor="cashback_type" data-after=":" className="font-normal text-right pt-1">
               Тип кешбека
-            </FieldLabel>
+            </label>
             <Combobox
               id="cashback_type"
               name="cashback_type"
@@ -558,7 +557,7 @@ export default function AddNomenclature({
                 <ComboboxList className="max-h-60" onWheel={(e) => e.stopPropagation()}>
                   {(item) => (
                     <ComboboxItem
-                      key={item.id}
+                      key={item.value}
                       value={item.value}
                       className="cursor-pointer"
                     >
@@ -573,130 +572,103 @@ export default function AddNomenclature({
         </TabsContent>
 
         <TabsContent value="SEO">
-          <FieldGroup className="px-10">
+          <FieldGroup className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20">
 
-            <Field orientation='horizontal'>
+            <label htmlFor='seo_title' data-after=":" className='text-right pt-1'>SEO Title</label>
+            <Input
+              id='seo_title'
+              name='seo_title'
+              type='text'
+              placeholder='Заголовок для поисковиков'
+              value={formData.seo_title ?? ''}
+              onChange={(e) => setFormData({ ...formData, seo_title: e.target.value })}
+            >
+            </Input>
 
-              <FieldLabel htmlFor='seo_title' data-after=":" className='font-normal min-w-[60px]'>SEO Title</FieldLabel>
+            <label htmlFor='seo_description' data-after=":" className='text-right pt-1'>SEO Description</label>
+            <Textarea
+              id='seo_description'
+              name='seo_description'
+              placeholder='Краткое описание для поисковиков'
+              value={formData.seo_description ?? ''}
+              onChange={(e) => setFormData({ ...formData, seo_description: e.target.value })}>
+            </Textarea>
 
-              <Input
-                id='seo_title'
-                name='seo_title'
-                type='text'
-                placeholder='Заголовок для поисковиков'
-                value={formData.seo_title ?? ''}
-                onChange={(e) => setFormData({ ...formData, seo_title: e.target.value })}
-              >
-              </Input>
+            <label htmlFor='seo_title' data-after=":" className='text-right pt-1' >SEO Keywords</label>
+            <Combobox
+              id="seo_title"
+              name="seo_title"
+              multiple
+              autoHighlight
+              items={formData.seo_keywords}
+              value={formData.seo_keywords}
+              onInputValueChange={(value) => {
+                setCurrentInput(value)
+              }}>
+              <ComboboxChips ref={anchor}>
+                <ComboboxValue>
+                  {(values) => (
+                    <React.Fragment>
+                      {values.map((value: string) => (
+                        <ComboboxChip
+                          key={value}
+                          onClickCapture={(e) => setFormData({
+                            ...formData,
+                            seo_keywords: formData.seo_keywords.filter((item) => item !== e.currentTarget.textContent),
+                          })}
+                        >
+                          {value}
+                        </ComboboxChip>
+                      ))}
 
-            </Field>
-
-            <Field orientation='horizontal'>
-
-              <FieldLabel htmlFor='seo_description' data-after=":" className='font-normal min-w-[110px]'>SEO Description</FieldLabel>
-
-              <Textarea
-                id='seo_description'
-                name='seo_description'
-                placeholder='Краткое описание для поисковиков'
-                value={formData.seo_description ?? ''}
-                onChange={(e) => setFormData({ ...formData, seo_description: e.target.value })}
-              >
-              </Textarea>
-
-            </Field>
-
-            <Field orientation='horizontal'>
-
-              <FieldLabel htmlFor='seo_title' data-after=":" className='font-normal min-w-[110px]' >SEO Keywords</FieldLabel>
-
-              <div className="w-full">
-                <Combobox
-                  id="seo_title"
-                  name="seo_title"
-                  multiple
-                  autoHighlight
-                  items={formData.seo_keywords}
-                  value={formData.seo_keywords}
-                  onInputValueChange={(value) => {
-                    setCurrentInput(value)
-                  }}
-                >
-                  <ComboboxChips ref={anchor}>
-                    <ComboboxValue>
-                      {(values) => (
-                        <React.Fragment>
-                          {values.map((value: string) => (
-                            <ComboboxChip
-                              key={value}
-                              onClickCapture={(e) => setFormData({
-                                ...formData,
-                                seo_keywords: formData.seo_keywords.filter((item) => item !== e.currentTarget.textContent),
-                              })}
-                            >
-                              {value}
-                            </ComboboxChip>
-                          ))}
-
-                          <ComboboxChipsInput onKeyDown={handleSEOKeyDown} />
-                        </React.Fragment>
-                      )}
-                    </ComboboxValue>
-                  </ComboboxChips>
-
-                  {currentInput.trim() ? (
-                    <ComboboxContent
-                      anchor={anchor}
-                      style={{ pointerEvents: 'auto' }}
-                      className="transition-all duration-300"
-                    >
-                      <ComboboxList>
-                        <ComboboxItem key={currentInput} value={currentInput}>
-                          {currentInput}
-                        </ComboboxItem>
-                      </ComboboxList>
-                    </ComboboxContent>
-                  ) : (
-                    <ComboboxContent
-                      anchor={anchor}
-                      style={{ pointerEvents: 'auto' }}
-                      className="transition-all duration-300"
-                    >
-                      <ComboboxEmpty>Нет данных</ComboboxEmpty>
-                      <ComboboxList>
-                        {(item) => (
-                          <ComboboxItem key={item} value={item}>
-                            {item}
-                          </ComboboxItem>
-                        )}
-                      </ComboboxList>
-                    </ComboboxContent>
+                      <ComboboxChipsInput onKeyDown={handleSEOKeyDown} />
+                    </React.Fragment>
                   )}
-                </Combobox>
-              </div>
+                </ComboboxValue>
+              </ComboboxChips>
 
-            </Field>
-
-
-
+              {currentInput.trim() ? (
+                <ComboboxContent
+                  anchor={anchor}
+                  style={{ pointerEvents: 'auto' }}
+                  className="transition-all duration-300"
+                >
+                  <ComboboxList>
+                    <ComboboxItem key={currentInput} value={currentInput}>
+                      {currentInput}
+                    </ComboboxItem>
+                  </ComboboxList>
+                </ComboboxContent>
+              ) : (
+                <ComboboxContent
+                  anchor={anchor}
+                  style={{ pointerEvents: 'auto' }}
+                  className="transition-all duration-300"
+                >
+                  <ComboboxEmpty>Нет данных</ComboboxEmpty>
+                  <ComboboxList>
+                    {(item) => (
+                      <ComboboxItem key={item} value={item}>
+                        {item}
+                      </ComboboxItem>
+                    )}
+                  </ComboboxList>
+                </ComboboxContent>
+              )}
+            </Combobox>
           </FieldGroup>
-
-
         </TabsContent>
 
         <TabsContent value='fast'
 
-        > <FieldGroup className='px-10'>
-            <Field orientation="horizontal">
-              <FieldLabel htmlFor="global_category_id"
-                className="w-[190px] font-normal"
-                data-after=":">
-                Глобальная категория
-              </FieldLabel>
-
-              <Input id="global_category_id">
-              </Input>
-            </Field>
+        >  <FieldGroup className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20">
+            <label htmlFor="global_category_id"
+              data-after=":"
+              className="text-right pt-1">
+              Глобальная категория
+            </label>
+            <Input id="global_category_id" placeholder='Выберите глобальную категорию'>
+            </Input>
           </FieldGroup></TabsContent>
 
 
