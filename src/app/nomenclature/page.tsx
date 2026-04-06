@@ -200,6 +200,7 @@ export default function Nomenclature() {
       })
       .then(() => fetchPicture(product))
   }
+  
   return (
     <div className="relative gap-7 flex-col p-5" >
       <Dialog >
