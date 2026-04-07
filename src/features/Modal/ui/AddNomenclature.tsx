@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { Field, FieldGroup } from '@/components/ui/field'
 import {
   Combobox,
   ComboboxChip,
@@ -35,8 +35,9 @@ import axios from 'axios'
 import { fetchData } from '@/products'
 import { toast } from 'sonner'
 import { Product, FillingData } from '@/products'
-import { CircleCheck, OctagonX } from 'lucide-react'
-import { totalmem } from 'os'
+import { CircleCheck, CircleQuestionMark, OctagonX } from 'lucide-react'
+import { Separator } from "@/components/ui/separator"
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN
@@ -250,10 +251,12 @@ export default function AddNomenclature({
               cursor-pointer"
             >
               {tab.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
 
+            </TabsTrigger>
+
+          ))}
+
+        </TabsList>
         <TabsContent value="basic">
           <div className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20 pt-2">
             <label htmlFor="name"
@@ -621,7 +624,7 @@ export default function AddNomenclature({
                         </ComboboxChip>
                       ))}
 
-                      <ComboboxChipsInput onKeyDown={handleSEOKeyDown} />
+                      <ComboboxChipsInput onKeyDown={handleSEOKeyDown} placeholder='Ключевые слова' />
                     </React.Fragment>
                   )}
                 </ComboboxValue>
@@ -667,12 +670,103 @@ export default function AddNomenclature({
               className="text-right pt-1">
               Глобальная категория
             </label>
-            <Input id="global_category_id" placeholder='Выберите глобальную категорию'>
-            </Input>
-          </FieldGroup></TabsContent>
+            <Input id="global_category_id" placeholder='Выберите глобальную категорию' />
+
+            <label htmlFor="marketplace_price"
+              data-after=":"
+              className="text-right pt-1">
+              Цена для маркетплейса
+            </label>
+            <Input id="marketplace_price" placeholder='0:00' />
+            <label htmlFor="chatting_percent"
+              data-after=":"
+              className="text-right pt-1">
+              Комиссия маркета
+            </label>
+            <div>
+              <Input id="chatting_percent" placeholder='4–100' />
+              <p className='font-light text-[13px] pt-1'>
+                Минимум 4%. Значение приводится к ближайшему кратному 4% (4–100)
+              </p>
+            </div>
+
+            <label htmlFor="qr_hash"
+              data-after=":"
+              className="text-right pt-1">
+              QR-hash
+            </label>
+            <Input id="qr_hash" placeholder='Автоматически генерируется при сохранении'
+              className='cursor-not-allowed bg-accent' />
+            
+            <label htmlFor="address"
+              data-after=":"
+              className="flex gap-1 text-right pt-1">
+              Адрес
+              <Tooltip>
+                <span className='cursor-help pt-1'>
+                  <TooltipTrigger asChild>
+                    <CircleQuestionMark size={18} />
+                  </TooltipTrigger>
+                </span>
+                <TooltipContent>
+                  <span>При выборе адреса широта и долгота заполняются автоматически</span>
+                </TooltipContent>
+              </Tooltip>
+            </label>
+            <Input id="address" placeholder='Введите адрес' />
+
+            <div className='grid grid-cols-[80px_1fr_80px_1fr] gap-4 px-8'>
+
+              <label
+                htmlFor="latitude"
+                data-after=":"
+                className="flex gap-1 text-right pt-1">
+                Широта
+                <Tooltip>
+                  <span className='cursor-help pt-1'>
+                    <TooltipTrigger asChild>
+                      <CircleQuestionMark size={18} />
+                    </TooltipTrigger>
+                  </span>
+                  <TooltipContent>
+                    <span>Автоматически заполняется при выборе адреса</span>
+                  </TooltipContent>
+                </Tooltip>
+              </label>
+              <Input
+                readOnly
+                id="latitude"
+                placeholder="55.751244"
+                className='cursor-not-allowed w-80 bg-accent focus-visible:border-gray-200' />
+
+              <label
+                htmlFor="longitude"
+                data-after=":"
+                className="flex gap-1 text-right pt-1">
+                Долгота
+                <Tooltip>
+                  <span className='cursor-help pt-1'>
+                    <TooltipTrigger asChild>
+                      <CircleQuestionMark size={18} />
+                    </TooltipTrigger>
+                  </span>
+                  <TooltipContent>
+                    <span>Автоматически заполняется при выборе адреса</span>
+                  </TooltipContent>
+                </Tooltip>
+              </label>
+              <Input
+                readOnly
+                id="longitude"
+                placeholder="37.618423"
+                className='cursor-not-allowed w-80 bg-accent focus-visible:border-gray-200' />
+            </div>
+          </FieldGroup>
+
+        </TabsContent>
 
 
-      </Tabs>
+      </Tabs >
 
       <DialogFooter className="sm:justify-end">
         <DialogClose asChild>
