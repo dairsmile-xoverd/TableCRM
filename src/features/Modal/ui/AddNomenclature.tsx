@@ -251,7 +251,6 @@ export default function AddNomenclature({
               cursor-pointer"
             >
               {tab.label}
-
             </TabsTrigger>
 
           ))}
@@ -662,9 +661,10 @@ export default function AddNomenclature({
           </FieldGroup>
         </TabsContent>
 
-        <TabsContent value='fast'
-
-        >  <FieldGroup className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20">
+        <TabsContent value='fast'>
+          
+          <div className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20">
+          
             <label htmlFor="global_category_id"
               data-after=":"
               className="text-right pt-1">
@@ -674,14 +674,31 @@ export default function AddNomenclature({
 
             <label htmlFor="marketplace_price"
               data-after=":"
-              className="text-right pt-1">
+              className="text-right pt-1 flex justify-end gap-1">
               Цена для маркетплейса
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <CircleQuestionMark size={18} className="cursor-help mt-1" color='gray' />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>При выборе адреса широта и долгота заполняются автоматически</span>
+                </TooltipContent>
+              </Tooltip>
             </label>
             <Input id="marketplace_price" placeholder='0:00' />
+            
             <label htmlFor="chatting_percent"
               data-after=":"
-              className="text-right pt-1">
+              className="text-right pt-1 flex justify-end gap-1">
               Комиссия маркета
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <CircleQuestionMark size={18} className="cursor-help mt-1" color='gray' />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>При выборе адреса широта и долгота заполняются автоматически</span>
+                </TooltipContent>
+              </Tooltip>
             </label>
             <div>
               <Input id="chatting_percent" placeholder='4–100' />
@@ -692,22 +709,28 @@ export default function AddNomenclature({
 
             <label htmlFor="qr_hash"
               data-after=":"
-              className="text-right pt-1">
+              className="text-right pt-1 flex justify-end gap-1">
               QR-hash
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <CircleQuestionMark size={18} className="cursor-help mt-1" color='gray' />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>При выборе адреса широта и долгота заполняются автоматически</span>
+                </TooltipContent>
+              </Tooltip>
             </label>
             <Input id="qr_hash" placeholder='Автоматически генерируется при сохранении'
               className='cursor-not-allowed bg-accent' />
-            
+
             <label htmlFor="address"
               data-after=":"
-              className="flex gap-1 text-right pt-1">
+              className="text-right pt-1 flex justify-end gap-1">
               Адрес
               <Tooltip>
-                <span className='cursor-help pt-1'>
-                  <TooltipTrigger asChild>
-                    <CircleQuestionMark size={18} />
-                  </TooltipTrigger>
-                </span>
+                <TooltipTrigger asChild>
+                  <CircleQuestionMark size={18} className="cursor-help mt-1" color='gray' />
+                </TooltipTrigger>
                 <TooltipContent>
                   <span>При выборе адреса широта и долгота заполняются автоматически</span>
                 </TooltipContent>
@@ -723,9 +746,9 @@ export default function AddNomenclature({
                 className="flex gap-1 text-right pt-1">
                 Широта
                 <Tooltip>
-                  <span className='cursor-help pt-1'>
+                  <span className='cursor-help pt-1' >
                     <TooltipTrigger asChild>
-                      <CircleQuestionMark size={18} />
+                      <CircleQuestionMark size={18} color='gray' />
                     </TooltipTrigger>
                   </span>
                   <TooltipContent>
@@ -747,7 +770,7 @@ export default function AddNomenclature({
                 <Tooltip>
                   <span className='cursor-help pt-1'>
                     <TooltipTrigger asChild>
-                      <CircleQuestionMark size={18} />
+                      <CircleQuestionMark size={18} color='gray' />
                     </TooltipTrigger>
                   </span>
                   <TooltipContent>
@@ -761,7 +784,7 @@ export default function AddNomenclature({
                 placeholder="37.618423"
                 className='cursor-not-allowed w-80 bg-accent focus-visible:border-gray-200' />
             </div>
-          </FieldGroup>
+          </div>
 
         </TabsContent>
 

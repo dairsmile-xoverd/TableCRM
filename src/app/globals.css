@@ -133,7 +133,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/20;
+    @apply border-border outline-ring/20 ;
     --sidebar-width: 15rem;
     --sidebar-width-icon: 4rem;
   }
