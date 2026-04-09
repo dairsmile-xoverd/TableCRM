@@ -35,7 +35,7 @@ import axios from 'axios'
 import { fetchData } from '@/products'
 import { toast } from 'sonner'
 import { Product, FillingData } from '@/products'
-import { CircleCheck, CircleQuestionMark, OctagonX } from 'lucide-react'
+import { CircleCheck, CircleQuestionMark, File, OctagonX, Percent, RussianRuble } from 'lucide-react'
 import { Separator } from "@/components/ui/separator"
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
@@ -257,7 +257,7 @@ export default function AddNomenclature({
 
         </TabsList>
         <TabsContent value="basic">
-          <div className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20 pt-2">
+          <div className="grid grid-cols-[210px_1fr] items-start gap-x-2 gap-y-8 pr-18">
             <label htmlFor="name"
               data-after=":"
               data-before="*"
@@ -574,7 +574,7 @@ export default function AddNomenclature({
         </TabsContent>
 
         <TabsContent value="SEO">
-          <FieldGroup className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20">
+          <FieldGroup className="grid grid-cols-[210px_1fr] items-start gap-x-2 gap-y-8 pr-18">
 
             <label htmlFor='seo_title' data-after=":" className='text-right pt-1'>SEO Title</label>
             <Input
@@ -662,9 +662,8 @@ export default function AddNomenclature({
         </TabsContent>
 
         <TabsContent value='fast'>
-          
-          <div className="grid grid-cols-[180px_1fr] items-start gap-x-2 gap-y-8 pr-20">
-          
+          <div className="grid grid-cols-[210px_1fr] items-start gap-x-2 gap-y-8 pr-18">
+
             <label htmlFor="global_category_id"
               data-after=":"
               className="text-right pt-1">
@@ -685,8 +684,13 @@ export default function AddNomenclature({
                 </TooltipContent>
               </Tooltip>
             </label>
-            <Input id="marketplace_price" placeholder='0:00' />
-            
+            <div>
+              <Input id="marketplace_price" type='number' step="0.01" placeholder='0:00' className='rounded-r-none' />
+              <span className='absolute h-9 bg-accent p-[11px] rounded-r-md border-gray-200 border border-l-0' >
+                <RussianRuble size={13} />
+              </span>
+            </div>
+
             <label htmlFor="chatting_percent"
               data-after=":"
               className="text-right pt-1 flex justify-end gap-1">
@@ -701,12 +705,15 @@ export default function AddNomenclature({
               </Tooltip>
             </label>
             <div>
-              <Input id="chatting_percent" placeholder='4–100' />
+              <Input id="chatting_percent" placeholder='4–100' className='rounded-r-none' />
+              <span className='absolute h-9 bg-accent p-[11px] rounded-r-md border-gray-200 border border-l-0' >
+                <Percent size={13} />
+              </span>
               <p className='font-light text-[13px] pt-1'>
                 Минимум 4%. Значение приводится к ближайшему кратному 4% (4–100)
               </p>
             </div>
-
+           
             <label htmlFor="qr_hash"
               data-after=":"
               className="text-right pt-1 flex justify-end gap-1">
@@ -720,8 +727,13 @@ export default function AddNomenclature({
                 </TooltipContent>
               </Tooltip>
             </label>
-            <Input id="qr_hash" placeholder='Автоматически генерируется при сохранении'
-              className='cursor-not-allowed bg-accent' />
+            <div>
+              <Input readOnly id="qr_hash" placeholder='Автоматически генерируется при сохранении'
+                className='cursor-not-allowed bg-accent focus-visible:border-gray-200 hover:border-border-gray-200 rounded-r-none' />
+              <span className='absolute cursor-not-allowed h-9 px-5 bg-accent p-[11px] rounded-r-md border-gray-200 border border-l-0 ' >
+                <File size={13} color='gray' />
+              </span>
+            </div>
 
             <label htmlFor="address"
               data-after=":"
@@ -738,7 +750,7 @@ export default function AddNomenclature({
             </label>
             <Input id="address" placeholder='Введите адрес' />
 
-            <div className='grid grid-cols-[80px_1fr_80px_1fr] gap-4 px-8'>
+            <div className='grid grid-cols-[80px_1fr_80px_1fr] gap-4 px-8 '>
 
               <label
                 htmlFor="latitude"
@@ -760,7 +772,7 @@ export default function AddNomenclature({
                 readOnly
                 id="latitude"
                 placeholder="55.751244"
-                className='cursor-not-allowed w-80 bg-accent focus-visible:border-gray-200' />
+                className='cursor-not-allowed w-80 bg-accent focus-visible:border-gray-200 hover:border-border-gray-200' />
 
               <label
                 htmlFor="longitude"
@@ -782,12 +794,11 @@ export default function AddNomenclature({
                 readOnly
                 id="longitude"
                 placeholder="37.618423"
-                className='cursor-not-allowed w-80 bg-accent focus-visible:border-gray-200' />
+                className='cursor-not-allowed w-80 bg-accent focus-visible:border-gray-200 hover:border-border-gray-200' />
             </div>
           </div>
 
         </TabsContent>
-
 
       </Tabs >
 
